@@ -1,5 +1,6 @@
 # Resume-Matcher
 
+Change the Upload path in ```constants/file_constants.py```
 
 ```pip install requirements.py```
 
