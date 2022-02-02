@@ -1,1 +1,1 @@
-UPLOAD_FOLDER = 'D:\\flask_file_copy'
+UPLOAD_FOLDER = '/Users/riya'

@@ -47,15 +47,15 @@ def check_for_file():
            #filename = secure_filename(file.filename)
            abs_paths = []
            filename = file.filename
-           req_document = cnst.UPLOAD_FOLDER+'\\'+filename
+           req_document = cnst.UPLOAD_FOLDER+'/'+filename
            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
            for resumefile in resume_files:
                filename = resumefile.filename
-               abs_paths.append(cnst.UPLOAD_FOLDER + '\\' + filename)
+               abs_paths.append(cnst.UPLOAD_FOLDER + '/' + filename)
                resumefile.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
            result = resume_matcher.process_files(req_document,abs_paths)
-           for file_path in abs_paths:
-               file_utils.delete_file(file_path)
+        #    for file_path in abs_paths:
+        #        file_utils.delete_file(file_path)
 
            return render_template("resume_results.html", result=result)
         else:
