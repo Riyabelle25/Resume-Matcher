@@ -1,8 +1,10 @@
 import os
+from urllib import response
 from flask import Flask, flash, request, redirect, render_template,url_for
 from constants import file_constants as cnst
 from processing import resume_matcher
 from utils import file_utils
+import json
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif','docx'])
 app = Flask(__name__)
@@ -54,10 +56,12 @@ def check_for_file():
                abs_paths.append(cnst.UPLOAD_FOLDER + '/' + filename)
                resumefile.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
            result = resume_matcher.process_files(req_document,abs_paths)
+           print(result)
+           response = json.dumps(result)
+           return response
         #    for file_path in abs_paths:
         #        file_utils.delete_file(file_path)
-
-           return render_template("resume_results.html", result=result)
+                  
         else:
            flash('Allowed file types are txt, pdf, png, jpg, jpeg, gif')
            return redirect(request.url)
